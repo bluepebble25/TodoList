@@ -1,0 +1,197 @@
+:root {
+    /* Color */
+    --skyblue-color: #DEEBF7;
+
+    /* Size */
+    --base-space: 14px;
+    --size-button: 60px;
+    --size-checkbox: 28px;
+    --size-radius: 8px;
+    --font-size: 20px;
+    --font-small: 18px;
+    
+}
+
+@font-face {
+    font-family: "Aharoni";
+    src: url("./fonts/ahronbd.ttf");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--skyblue-color);
+    height: 100vh;
+    padding-top: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+}
+
+h1 {
+    position: relative;
+    font-family: "Aharoni";
+    font-size: 40px;
+}
+
+h1::before {
+    font-size: 40px;
+    bottom: 2px;
+    color: rgba(0,0,0,0.20);
+    content: "To do List";
+    position: absolute;
+    text-shadow: none;
+    filter: blur(3px);
+    transform-origin: bottom left;
+    transform: skew(-50deg) scale(1,0.5);
+    z-index: -1;
+}
+
+#remaning {
+    text-align: right;
+    font-size: var(--font-small);
+    padding-right: 20px;
+}
+
+#deleteChecked {
+    text-align: right;
+    font-size: var(--font-small);
+    padding-right: 20px;
+}
+
+#deleteChecked:hover {
+    color: #ff4000;
+    cursor: pointer;
+}
+
+.card {
+    margin-bottom: var(--base-space);
+}
+
+.list {
+    max-height: 550px;
+    overflow-y: auto;
+    margin: calc(var(--base-space) / 2) 0;
+    padding: 0 20px;
+}
+
+.list::-webkit-scrollbar {
+    width: 10px;
+    margin-left: var(--base-space);
+}
+
+.list::-webkit-scrollbar-thumb {
+    background-color: #ffd24d;
+    border-radius: 10px;
+}
+
+.list::-webkit-scrollbar-track {
+    background-color: #fff2cc;
+    border-radius: 10px;
+}
+
+.list-item {
+    padding: var(--base-space);
+    margin: 10px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: var(--size-radius);
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.list-item .description {
+    width: 90%;
+    font-size: var(--font-size);
+}
+
+.list-item input[type=text] {
+    font-size: var(--font-size);
+}
+
+.list-item input[type=checkbox] {
+    width: var(--size-checkbox);
+    height: var(--size-checkbox);
+    margin-right: var(--base-space);
+}
+
+.list-item .checkbox {
+    border: 1px solid;
+    border-radius: 4px;
+    width: var(--size-checkbox);
+    height: var(--size-checkbox);
+    margin-right: var(--base-space);
+    text-align: center;
+    font-size: var(--font-size);
+}
+
+.list-item .checkbox i {
+    color: white;
+}
+
+.list-item .btn_delete {
+    justify-self: right;
+    margin-left: var(--base-space);
+    border: none;
+    color: #d9d9d9;
+    visibility: hidden;
+}
+
+.list-item:hover .btn_delete {
+    visibility: visible;
+}
+
+.list-item .btn_delete:hover {
+    color: #ff6b6b;
+}
+
+.list-item .btn_delete i {
+    font-size: var(--font-size);
+}
+
+/* typing bar */
+.add-area {
+    display: flex;
+}
+
+.add-area input {
+    height: 50px;
+    width: 80%;
+    min-width: 400px;
+    border: none;
+    font-size: var(--font-size);
+    text-align: center;
+    border-radius: 10px 0 0 10px;
+}
+
+.add-area input:focus {
+    outline: 2px solid #ffd24d;
+}
+
+.add-area input::placeholder {
+    color: #BFBFBF;
+    font-style: italic;
+}
+
+.add-area button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: #ffd24d;
+    border-radius: 0 10px 10px 0;
+}
+
+.add-area button i {
+    font-size: var(--font-size);
+    color: white;
+}

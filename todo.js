@@ -70,8 +70,9 @@ function toggleCheckbox() {
 }
 
 function modifyItem() {
-    const oldValue = this.innerText;
-    const listItem = this.parentElement;
+    const description = this;
+    const oldValue = description.innerText;
+    const listItem = description.parentElement;
 
     // Make input Element
     const input = document.createElement('input');
@@ -80,51 +81,43 @@ function modifyItem() {
     input.value = oldValue;
     
     // hide description area
-    this.style.display = 'none';
-    listItem.insertBefore(input, this);
+    description.style.display = 'none';
+    listItem.insertBefore(input, description);
 
     input.focus();
     
-    // Event Listeners
+    // Event Listeners to end modifying
     // - 1. when click outside of input
-    // document.body.addEventListener('click', (event) => {
-    //     if(event.target === input) {
-    //         return;
-    //     } else {
-    //         endModify(this, input, oldValue);
-    //     }
-    // });
-    /* ***문제***
-        - body에 eventListener로 함수를 등록했다가 input 창이 사라지면
-          removeEventListener('click', 함수 이름)을 통해 이벤트를 제거해야한다.
-        - 하지만 이벤트 함수에 파라미터를 전달하기 위해서는 익명함수를 써야 하므로 제거할 수 없게된다.
-        - 남아있는 이벤트가 배경을 클릭할때마다 발생해서 에러가 생긴다.
-        - 나중에 고치기
-    */
+    document.body.addEventListener('click', onClickBody);
 
     // - 2. when enter key is down
     input.addEventListener("keydown", (event) => {
         if(event.key === "Enter") {
-            endModify(this, input, oldValue);
+            endModify();
+            document.body.removeEventListener('click', onClickBody);
         }
-    })
-}
+    });
 
-function endModify(description, input, oldValue) {
-    // Change description's text
-    description.innerText = input.value;
+    function onClickBody(event) {
+        if(event.target != input) {
+            endModify();
+            document.body.removeEventListener('click', onClickBody);
+        }
+    }
 
-    // Remove input element and show description again
-    const listItem = input.parentElement;
-    listItem.removeChild(input);
-
-    description.style.display = 'block';
-
-    // Change todoArr and Save to Local Storage
-    const index = todoArr.indexOf(oldValue);
-    todoArr[index] = description.innerText;
-
-    saveLocalTodos();
+    function endModify() {
+        // Change description's text
+        description.innerText = input.value;
+    
+        // Remove input element and show description again
+        listItem.removeChild(input);
+        description.style.display = 'block';
+    
+        // Change todoArr and Save to Local Storage
+        const index = todoArr.indexOf(oldValue);
+        todoArr[index] = description.innerText;   
+        saveLocalTodos();
+    }
 }
 
 function deleteCheckedItems() {

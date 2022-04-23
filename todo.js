@@ -17,6 +17,32 @@ todoInput.addEventListener("keydown", (e) => {
 })
 deleteChecked.addEventListener("click", deleteCheckedItems);
 
+list.addEventListener('click', (event) => {
+    // if <div> for checkbox is clicked
+    if(event.target.classList.contains('checkbox')) {
+        toggleCheckbox.call(event.target);
+        return;
+    }
+
+    // if <i> inside the checkbox div is clicked
+    if(event.target.closest('div').classList.contains('checkbox')) {
+        toggleCheckbox.call(event.target.parentElement);
+        return;
+    }
+
+    // if <i> inside the delete button is clicked
+    if(event.target.parentElement.classList.contains('btn_delete')) {
+        deleteItem.call(event.target.parentElement);
+        return;
+    }
+});
+
+list.addEventListener('dblclick', (event) => {
+    if(event.target.classList.contains('description')) {
+        modifyItem.call(event.target);
+    }
+});
+
 // Functions
 function addItem() {
     // append Item into the list
@@ -162,11 +188,6 @@ function makeItemElement(todoValue) {
     btn_delete.setAttribute("type", "button");
     btn_delete.innerHTML = "<i class='fa fa-trash' aria-hidden='true'></i>";
     listItem.appendChild(btn_delete);
-
-    // Set up EventListener to the list items
-    checkbox.addEventListener("click", toggleCheckbox);
-    description.addEventListener("dblclick", modifyItem);
-    btn_delete.addEventListener("click", deleteItem);
 
     // Example
     /*

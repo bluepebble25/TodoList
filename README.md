@@ -11,7 +11,8 @@ To-do List made using Vanilla JS
 - Deleting checked items at once
 
 ### Features to be added
-- Responsive design on all size of devices
+- ✅Responsive design on all size of devices
+- Editing items by long-press on mobile environment
 - Changing the order of the list by Drag and Drop
 
 ## *Reference*

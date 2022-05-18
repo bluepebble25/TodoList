@@ -7,9 +7,8 @@
     --size-button: 60px;
     --size-checkbox: 28px;
     --size-radius: 8px;
-    --font-size: 20px;
-    --font-small: 18px;
-    
+    --font-size: 2rem;
+    --font-small: 1.8rem;
 }
 
 @font-face {
@@ -23,10 +22,14 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 62.5%;
+}
+
 body {
     background-color: var(--skyblue-color);
     height: 100vh;
-    padding-top: 7%;
+    padding-top: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,6 +58,10 @@ h1::before {
     z-index: -1;
 }
 
+.card {
+    margin-bottom: var(--base-space);
+}
+
 #remaning {
     text-align: right;
     font-size: var(--font-small);
@@ -70,10 +77,6 @@ h1::before {
 #deleteChecked:hover {
     color: #ff4000;
     cursor: pointer;
-}
-
-.card {
-    margin-bottom: var(--base-space);
 }
 
 .list {
@@ -110,21 +113,6 @@ h1::before {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.list-item .description {
-    width: 90%;
-    font-size: var(--font-size);
-}
-
-.list-item input[type=text] {
-    font-size: var(--font-size);
-}
-
-.list-item input[type=checkbox] {
-    width: var(--size-checkbox);
-    height: var(--size-checkbox);
-    margin-right: var(--base-space);
-}
-
 .list-item .checkbox {
     border: 1px solid;
     border-radius: 4px;
@@ -132,11 +120,21 @@ h1::before {
     height: var(--size-checkbox);
     margin-right: var(--base-space);
     text-align: center;
-    font-size: var(--font-size);
+    font-size: 20px;
 }
 
 .list-item .checkbox i {
     color: white;
+}
+
+.list-item .description {
+    width: 90%;
+    font-size: var(--font-size);
+}
+
+.list-item input {
+    width: 90%;
+    font-size: var(--font-size);
 }
 
 .list-item .btn_delete {
@@ -166,7 +164,6 @@ h1::before {
 
 .add-area input {
     height: 50px;
-    width: 80%;
     min-width: 400px;
     border: none;
     font-size: var(--font-size);
@@ -194,4 +191,41 @@ h1::before {
 .add-area button i {
     font-size: var(--font-size);
     color: white;
+}
+
+@media only screen and (max-width: 480px) {
+    body {
+        padding-top: 7%;
+    }
+
+    h1 {
+        font-size: 35px;
+    }
+
+    h1::before {
+        font-size: 35px;
+    }
+
+    .list {
+        max-height: 70vh;
+    }
+
+    .add-area input {
+        width: 100vw;
+        border-radius: 0;
+    }
+
+    .add-area input:focus {
+        outline: none;
+        border: 2px solid #ffd24d;
+    }
+
+    .add-area {
+        position: fixed;
+        bottom: 0;
+    }
+
+    .btn_add {
+        display: none;
+    }
 }

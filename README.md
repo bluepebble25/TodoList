@@ -1,5 +1,7 @@
 # TodoList
 
+![todo_screenshot](https://user-images.githubusercontent.com/71175587/225251614-82b52ff2-8eab-4d99-ac57-d74db8c01f1c.PNG)
+
 ## Introduction
 To-do List made using Vanilla JS
 
